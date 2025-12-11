@@ -71,20 +71,26 @@ public class Service {
 
     }
     public  void printAll(){
-        for (Room r : rooms){
-            System.out.println("Room_Number : " +r.nbrRoom + "Room_Type : " +r.type + "Room_PricePerNight : " +r.prixParNuit  );
-        }
-        for(Booking b : bookings){
-            long nights = (b.checkOut.getTime() - b.checkIn.getTime()) / (1000 * 60 * 60 * 24);
-            int total = (int) nights * b.roomSnapshot.prixParNuit;
-            System.out.println("Booking_user : " + b.userSnapshot.id +
-                    ", Room_number : " + b.roomSnapshot.nbrRoom +
-                    ", Check_in : " + b.checkIn +
-                    ", Check_Out : " + b.checkOut +
-                    ", Total : " + total + " DH");
+
+        try {
+
+            for (Room r : rooms){
+                System.out.println("Room_Number : " +r.nbrRoom + "Room_Type : " +r.type + "Room_PricePerNight : " +r.prixParNuit  );
+            }
+            for(Booking b : bookings){
+                long nights = (b.checkOut.getTime() - b.checkIn.getTime()) / (1000 * 60 * 60 * 24);
+                int total = (int) nights * b.roomSnapshot.prixParNuit;
+                System.out.println("Booking_user : " + b.userSnapshot.id +
+                        ", Room_number : " + b.roomSnapshot.nbrRoom +
+                        ", Check_in : " + b.checkIn +
+                        ", Check_Out : " + b.checkOut +
+                        ", Total : " + total + " DH");
 
 
 
+            }
+        }catch (RuntimeException e){
+            System.out.println(e);
         }
     }
     public void printAllUsers() {
